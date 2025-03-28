@@ -110,8 +110,16 @@ public class SocialMediaController {
     // delete message by i.d handler
     private void deleteMessageById(Context ctx){
         int messageid = Integer.parseInt(ctx.pathParam("message_id"));
+        if(messageDAO.doesMessageIdExist(messageid)){
+
         messageDAO.deleteMessageById(messageid);
+        ctx.json(messageDAO.getMessageById(messageid));
+        }else{
+
+        
         ctx.status(200);
+        ctx.result("");
+        }
 
 
     }
