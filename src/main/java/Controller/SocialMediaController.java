@@ -111,7 +111,7 @@ public class SocialMediaController {
     private void deleteMessageById(Context ctx){
         int messageid = Integer.parseInt(ctx.pathParam("message_id"));
         messageDAO.deleteMessageById(messageid);
-        ctx.status(204);
+        ctx.status(200);
 
 
     }
