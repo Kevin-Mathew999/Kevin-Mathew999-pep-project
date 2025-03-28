@@ -16,7 +16,7 @@ public class MessageDAO {
         List<Message> messages = new ArrayList<>();
 
         try {
-            String sql = "Select * from message";
+            String sql = "Select * from Message";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery(sql);
             while(rs.next()){
