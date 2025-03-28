@@ -35,7 +35,7 @@ public class MessageDAO {
         Connection connection = ConnectionUtil.getConnection();
 
         try{
-            String sql = "Select * from message where message_id = ?; ";
+            String sql = "Select * from Message where message_id = ?; ";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,id);
@@ -167,7 +167,7 @@ public class MessageDAO {
                 String sql = "Select * from message WHERE account_id = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1,id);
-                ResultSet rs = preparedStatement.executeQuery(sql);
+                ResultSet rs = preparedStatement.executeQuery();
                 while(rs.next()){
                     Message message = new Message(rs.getInt("message_id"),rs.getInt("posted_by"),rs.getString("message_text"),rs.getLong("time_posted_epoch"));
                     messages.add(message);
