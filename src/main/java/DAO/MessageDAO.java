@@ -164,7 +164,7 @@ public class MessageDAO {
             List<Message> messages = new ArrayList<>();
     
             try {
-                String sql = "Select * from message WHERE account_id = ?";
+                String sql = "Select * from message WHERE posted_by = ?";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
                 preparedStatement.setInt(1,id);
                 ResultSet rs = preparedStatement.executeQuery();
