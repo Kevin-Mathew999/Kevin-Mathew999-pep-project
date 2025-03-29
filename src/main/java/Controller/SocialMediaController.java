@@ -133,9 +133,9 @@ public class SocialMediaController {
     private void updateMessageById(Context ctx)throws JsonProcessingException{
         int messageid = Integer.parseInt(ctx.pathParam("message_id"));
         ObjectMapper mapper = new ObjectMapper();
-        String message = mapper.readValue(ctx.body(),String.class);
+        Message message = mapper.readValue(ctx.body(),Message.class);
         if( messageDAO.doesMessageIdExist(messageid)){
-        if(message.length() >= 1 && message.length() <= 255){
+        if(message.getMessage_text().length() >= 1 && message.getMessage_text().length() <= 255){
 
             messageDAO.updateMessage2(messageid, message);
             ctx.json(messageDAO.getMessageById(messageid));

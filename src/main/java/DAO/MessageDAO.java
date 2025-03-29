@@ -111,14 +111,14 @@ public class MessageDAO {
 
         }
 
-        public void updateMessage2(int id, String message){
+        public void updateMessage2(int id, Message message){
             Connection connection = ConnectionUtil.getConnection();
 
             try{
                 String sql = "Update message set message_text = ? where message_id = ?;";
                 PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-                preparedStatement.setString(1,message);
+                preparedStatement.setString(1,message.getMessage_text());
                 preparedStatement.setInt(2,id);
 
                 preparedStatement.executeUpdate();
