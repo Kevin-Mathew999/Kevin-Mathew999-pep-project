@@ -78,7 +78,7 @@ public class SocialMediaController {
         ObjectMapper mapper = new ObjectMapper();
         Account account = mapper.readValue(ctx.body(),Account.class);
         if( accountDAO.doesUserExist(account)){
-            ctx.json(account);
+            ctx.json(accountDAO.returnAccount(account));
 
     }else{
         ctx.status(401);
