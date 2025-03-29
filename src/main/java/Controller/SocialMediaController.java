@@ -133,15 +133,19 @@ public class SocialMediaController {
     private void updateMessageById(Context ctx)throws JsonProcessingException{
         int messageid = Integer.parseInt(ctx.pathParam("message_id"));
         ObjectMapper mapper = new ObjectMapper();
-        Message message = mapper.readValue(ctx.body(),Message.class);
-        Message addedMessage = messageService.messageRegistration(message);
-        if(addedMessage == null){
+        String message = mapper.readValue(ctx.body(),String.class);
+        if( messageDAO.doesMessageIdExist(messageid)){
+        if(message.length() >= 1 && message.length() <= 255){
+
+            messageDAO.updateMessage2(messageid, message);
+            ctx.json(messageDAO.getMessageById(messageid));
+        } else{
             ctx.status(400);
-        }else{
-            messageDAO.updateMessage(messageid, message);
-            ctx.json(message);
         }
+        }else{
+            ctx.status(400);
     }
+}
     //get all messages by user
     private void getAllMessagesByUser(Context ctx){
         int accountid = Integer.parseInt(ctx.pathParam("account_id"));

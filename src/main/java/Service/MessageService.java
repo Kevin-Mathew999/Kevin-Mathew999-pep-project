@@ -39,6 +39,16 @@ public class MessageService {
 
     }
 
+    public Message messageUpdateCriteria(String message){
+        if(message.length() >= 1 && message.length() <= 255){
+            
+               
+        }
+
+
+
+    }
+
     public Message messageCreation(Message message){
         if(message.getMessage_text().length() >= 1 && message.getMessage_text().length() <= 255){
             if(messageDAO.doesPostedByExist(message.getPosted_by())){

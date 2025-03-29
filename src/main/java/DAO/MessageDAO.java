@@ -111,6 +111,24 @@ public class MessageDAO {
 
         }
 
+        public void updateMessage2(int id, String message){
+            Connection connection = ConnectionUtil.getConnection();
+
+            try{
+                String sql = "Update message set message_text = ? where message_id = ?;";
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+                preparedStatement.setString(1,message);
+                preparedStatement.setInt(2,id);
+
+                preparedStatement.executeUpdate();
+
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+        }
+
         // Persisting a message to the DB
 
         public Message insertMessage(Message message){
