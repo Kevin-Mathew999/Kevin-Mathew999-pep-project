@@ -159,6 +159,27 @@ public class MessageDAO {
 
         }
 
+        public Boolean doesPostedByExist(int id){
+            Connection connection = ConnectionUtil.getConnection();
+    
+            try{
+                String sql = "SELECT 1 from message WHERE posted_by = ? LIMIT 1;";
+    
+                PreparedStatement ps = connection.prepareStatement(sql);
+    
+                ps.setInt(1,id);
+    
+                ResultSet rs = ps.executeQuery();
+    
+                return rs.next();
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+                return false;
+            }
+
+
+    }
+
         public List<Message> getAllMessagesByAccountId(int id){
             Connection connection = ConnectionUtil.getConnection();
             List<Message> messages = new ArrayList<>();

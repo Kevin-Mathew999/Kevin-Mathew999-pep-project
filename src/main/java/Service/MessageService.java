@@ -39,6 +39,22 @@ public class MessageService {
 
     }
 
+    public Message messageCreation(Message message){
+        if(message.getMessage_text().length() >= 1 && message.getMessage_text().length() <= 255){
+            if(messageDAO.doesPostedByExist(message.getPosted_by())){
+                Message addedmessage = messageDAO.insertMessage(message);
+                return addedmessage;
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
+
+
+
+    }
+
   
 
 }
